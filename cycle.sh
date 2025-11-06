@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# Ensure the node executable has the proper permissions
-  chmod +x ./node
-  
   # Write the configuration to data.json
   cat <<EOF > data.json
 {
@@ -15,4 +12,3 @@ EOF
   # Start the node process in the background and capture its PID
   ./node app.js
   
-done
